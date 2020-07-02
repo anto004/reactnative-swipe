@@ -14,6 +14,7 @@ class Ball extends Component {
 	}
 
 	render() {
+		console.log(this.position.getLayout());
 		return (
 			<Animated.View style={this.position.getLayout()}>
 				<View style={styles.ball} />
