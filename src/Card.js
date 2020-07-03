@@ -1,27 +1,31 @@
 import React, { Component } from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import { ThemeProvider, Text, Card, Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-class Card extends Component {
+class MyCard extends Component {
+	smileyIcon = (
+		<Icon name="emoticon-cool-outline" size={30} color="#edeceb" />
+	);
 	render() {
 		const { data } = this.props;
 		return (
 			<View>
-				<Image
-					style={styles.deck}
-					source={{
-						uri: data.uri,
-					}}
-				/>
-				<View style={styles.titleContainer}>
+				<Card image={{ uri: data.uri }} imageStyle={styles.image}>
 					<Text style={styles.title}>{data.text}</Text>
-				</View>
+					<Button
+						icon={this.smileyIcon}
+						backgroundColor="#78324"
+						title="View"
+					/>
+				</Card>
 			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-	deck: {
+	image: {
 		width: 200,
 		height: 150,
 		borderRadius: 10,
@@ -34,8 +38,9 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	title: {
+		marginBottom: 5,
 		fontSize: 18,
 	},
 });
 
-export default Card;
+export default MyCard;

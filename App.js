@@ -58,7 +58,7 @@ export default function App() {
 				translucent={false}
 				networkActivityIndicatorVisible={true}
 			/>
-			<Deck data={DATA[0]} />
+			<Deck data={DATA} />
 		</View>
 	);
 }
