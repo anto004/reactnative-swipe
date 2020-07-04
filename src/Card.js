@@ -9,6 +9,7 @@ class MyCard extends Component {
 	);
 	render() {
 		const { data } = this.props;
+		
 		return (
 			<View>
 				<Card image={{ uri: data.uri }} imageStyle={styles.image}>
