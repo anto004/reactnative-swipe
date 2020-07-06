@@ -58,7 +58,7 @@ export default function App() {
 				translucent={false}
 				networkActivityIndicatorVisible={true}
 			/>
-			<Deck data={DATA} />
+			<Deck data={DATA.reverse()} />
 		</View>
 	);
 }
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		flexDirection: "column",
-		alignItems: "center",
+		alignItems: "flex-start",
 		justifyContent: "flex-start",
 	},
 });
