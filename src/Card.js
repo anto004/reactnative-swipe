@@ -11,7 +11,7 @@ class MyCard extends Component {
 		const { data } = this.props;
 
 		return (
-			<View>
+			<View style={{ alignItems: "center" }}>
 				<Card image={{ uri: data.uri }} imageStyle={styles.image}>
 					<Text style={styles.title}>{data.text}</Text>
 					<Button
@@ -28,7 +28,7 @@ class MyCard extends Component {
 const styles = StyleSheet.create({
 	image: {
 		width: 200,
-		height: 150,
+		height: 100,
 		borderRadius: 10,
 		margin: 10,
 		marginTop: 20,

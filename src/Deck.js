@@ -183,12 +183,15 @@ class Deck extends Component {
 			return this.renderOutOfCards();
 		}
 
-		return <View>{this.renderCard()}</View>;
+		return <View style={styles.deckContainer}>{this.renderCard()}</View>;
 	}
 }
 
 // zIndex controls which components display on top of others
 const styles = StyleSheet.create({
+	deckContainer: {
+		flex: 1,
+	},
 	cardStack: {
 		position: "absolute",
 		zIndex: 1,

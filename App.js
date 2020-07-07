@@ -1,7 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-elements";
 import { StatusBar } from "expo-status-bar";
 import Deck from "./src/Deck";
+import CardCarousel from "./src/CardWithCarousel";
 
 const DATA = [
 	{
@@ -58,7 +60,13 @@ export default function App() {
 				translucent={false}
 				networkActivityIndicatorVisible={true}
 			/>
+
 			<Deck data={DATA.reverse()} />
+
+			<View style={styles.carouselContainer}>
+				<Text h3> Card with Carousel </Text>
+				<CardCarousel data={DATA} />
+			</View>
 		</View>
 	);
 }
@@ -66,9 +74,12 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
+		backgroundColor: "white",
 		flexDirection: "column",
 		alignItems: "flex-start",
 		justifyContent: "flex-start",
+	},
+	carouselContainer: {
+		flex: 1,
 	},
 });
