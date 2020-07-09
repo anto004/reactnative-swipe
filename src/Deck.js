@@ -5,6 +5,8 @@ import {
 	Animated,
 	Dimensions,
 	StyleSheet,
+	LayoutAnimation,
+	UIManager,
 } from "react-native";
 import { Card, Text, Button } from "react-native-elements";
 import MyCard from "./Card";
@@ -41,7 +43,15 @@ class Deck extends Component {
 			panResponder,
 			position,
 			cardIndex: this.deck.length - 1,
+			moveCardUp: 0,
 		};
+	}
+
+	componentDidUpdate() {
+		UIManager.setLayoutAnimationEnabledExperimental &&
+			UIManager.setLayoutAnimationEnabledExperimental(true);
+		// Animate any component that will update
+		LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
 	}
 
 	resetCardPosition() {
@@ -50,16 +60,18 @@ class Deck extends Component {
 		}).start();
 	}
 
-	// If direction is left decrement index
 	// If direction is right increment index
+	// If direction is left decrement index
 	exitCardComplete(direction) {
 		if (direction < 0) {
 			this.setState(({ cardIndex }) => ({
-				cardIndex: cardIndex - 1,
+				cardIndex: cardIndex + 1,
+				moveCardUp: this.state.moveCardUp + 10,
 			}));
 		} else {
 			this.setState(({ cardIndex }) => ({
-				cardIndex: cardIndex + 1,
+				cardIndex: cardIndex - 1,
+				moveCardUp: this.state.moveCardUp - 10,
 			}));
 		}
 
@@ -161,8 +173,20 @@ class Deck extends Component {
 					</Animated.View>
 				);
 			}
+
 			return (
-				<View style={styles.cardStack} key={data.id}>
+				// If images flashes use Animated.View
+				// Use Bottom property to cascade cards
+				<View
+					style={[
+						styles.cardStack,
+						{
+							marginBottom: 0,
+							bottom: 5 * i - this.state.moveCardUp,
+						},
+					]}
+					key={data.id}
+				>
 					<MyCard data={data} key={data.id} />
 				</View>
 			);
@@ -188,6 +212,7 @@ class Deck extends Component {
 }
 
 // zIndex controls which components display on top of others
+// top property: one card slightly below the other
 const styles = StyleSheet.create({
 	deckContainer: {
 		flex: 1,

@@ -25,7 +25,6 @@ class CardCarousel extends Component {
 				sliderWidth={400}
 				itemWidth={400}
 				onSnapToItem={(index) => this.setState({ activeIndex: index })}
-				style={{ backgroundColor: "red" }}
 			/>
 		);
 	}

@@ -5,20 +5,25 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 class MyCard extends Component {
 	smileyIcon = (
-		<Icon name="emoticon-cool-outline" size={30} color="#edeceb" />
+		<Icon name="emoticon-cool-outline" size={20} color="#edeceb" />
 	);
 	render() {
 		const { data } = this.props;
 
 		return (
 			<View style={{ alignItems: "center" }}>
-				<Card image={{ uri: data.uri }} imageStyle={styles.image}>
-					<Text style={styles.title}>{data.text}</Text>
-					<Button
-						icon={this.smileyIcon}
-						backgroundColor="#78324"
-						title="View"
-					/>
+				<Card>
+					<Image source={{ uri: data.uri }} style={styles.image} />
+					<View style={styles.titleContainer}>
+						<Text style={styles.title}>{data.text}</Text>
+						<Button
+							title="view"
+							icon={this.smileyIcon}
+							buttonStyle={styles.button}
+							type="solid"
+							raised={true}
+						/>
+					</View>
 				</Card>
 			</View>
 		);
@@ -30,8 +35,8 @@ const styles = StyleSheet.create({
 		width: 200,
 		height: 100,
 		borderRadius: 10,
-		margin: 10,
-		marginTop: 20,
+		margin: 0,
+		marginBottom: 10,
 	},
 	titleContainer: {
 		flexDirection: "column",
@@ -39,8 +44,13 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	title: {
+		alignSelf: "flex-start",
 		marginBottom: 5,
 		fontSize: 18,
+	},
+	button: {
+		width: 100,
+		backgroundColor: "#783244",
 	},
 });
 
